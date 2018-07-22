@@ -1,0 +1,11 @@
+.house, .light {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font: 16px 'Georgia', serif;
+    padding: 5px;
+    display: inline-block;
+    margin: 15px;
+}

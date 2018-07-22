@@ -58,33 +58,24 @@ function bubbleSort(arr) {
     var N = arr.length;
     var buffer;
 
-    function isNumber(arr) {
-
-        for (var i = 0; i < arr.length; i++) {
-            if ((typeof(arr[i]) === "number") && !(isNaN(arr[i]))) {
-                continue;
-            } else {
-                alert('Array must contains only numbers');
-                return false;
-            }
-        }
-        return true;
-    }
-    var valid = isNumber(arr);
-
-    if (valid) {
-        for (var i = 0; i < N; i++) {
-            for (var j = i + 1; j < N; j++) {
-                if (arr[i] > arr[j]) {
-                    buffer = arr[i];
-                    arr[i] = arr [j];
-                    arr[j] = buffer;
-                } else {
-                    continue;
+    for (var i = 0; i < arr.length; i++) {
+        if ((typeof(arr[i]) === "number") && !(isNaN(arr[i]))) {
+            for (var i = 0; i < N; i++) {
+                for (var j = i + 1; j < N; j++) {
+                    if (arr[i] > arr[j]) {
+                        buffer = arr[i];
+                        arr[i] = arr [j];
+                        arr[j] = buffer;
+                    } else {
+                        continue;
+                    }
                 }
             }
+            return arr;
+        } else {
+            alert('Array must contains only numbers');
+            return false;
         }
-        return arr;
     }
 }
 bubbleSort(arr);
