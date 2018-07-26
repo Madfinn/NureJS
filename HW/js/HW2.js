@@ -40,11 +40,11 @@ function DeviceControl() {
 }
 
 DeviceControl.prototype.on = function () {
-    return this._state = true;
+    this._state = true;
 };
 
 DeviceControl.prototype.off = function () {
-    return this._state = false;
+   this._state = false;
 };
 
 DeviceControl.prototype.getState = function() {
@@ -67,7 +67,7 @@ function  Light(name, brand, type, power, lighting) {
     this._power = power;
     this._lighting = lighting;
     this._bright = 0;
-    this._state = document.createElement("div");
+    this._state = false;
     DeviceControl.apply(this, arguments);
 };
 
@@ -82,12 +82,16 @@ Light.prototype.getBrand = function() {
     return this._brand;
 };
 
-Light.prototype.addBright = function (bright) {
-    var max = 1000,
+Light.prototype.getBright = function() {
+    return this._bright;
+};
+
+Light.prototype.addBright = function () {
+   /* var max = 1000,
         min = 0;
     if (bright > max || bright < min) {
         return;
-    }
+    }*/
 
     return this._bright += 50;
 };
@@ -107,21 +111,24 @@ Light.prototype.renderLight = function() {
 
     var bright = document.createElement("span");
     bright.className = "prop";
-    bright.innerText = "Bright = " + this._bright;
+    bright.innerText = "Bright = " + this._bright;	
 
     var increaseBright = document.createElement("button");
     increaseBright.type = "button";
     increaseBright.className = 'settingsBtn';
-    increaseBright.innerHTML = "Bright +";
+    increaseBright.innerHTML = "Bright Up";
     increaseBright.addEventListener("click", function () {
-            Light.prototype.addBright(bright);
+		console.log(this._bright);
+            this.addBright();
             Light.prototype.brightChange();
     }, false);
-
+	
+	this.brightChange();
     root.appendChild(lamp);
     lamp.appendChild(bright);
-    lamp.appendChild(addBright);
+    lamp.appendChild(increaseBright);
 };
+
 
 //constructor TV
 function TV(name, brand, displaySize) {
@@ -205,6 +212,7 @@ root.appendChild(pentHouse);
 //create floorLamp
 var floorLamp = new Light("Floor lamp", "Panasonic", "floor lamp", "60W", "cold light");
 floorLamp.renderLight();
+
 
 //create Luster
 var lusterLamp = new Light("Luster", "Shine Like Sun", "luster", "100W", "warm light");
