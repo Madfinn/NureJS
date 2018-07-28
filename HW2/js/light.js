@@ -48,7 +48,7 @@ Light.prototype.removeBright = function(bright) {
 
 Light.prototype.renderLight = function() {
     var lamp = document.createElement("div");
-    lamp.className = "light";
+    lamp.className = this._name;
     lamp.innerHTML = this._name;
 
     var bright = document.createElement("div");

@@ -12,14 +12,23 @@ function SmartHouse(name, address) {
 /*SmartHouse.prototype.getState = function() {
     return this._state;
 };*/
+SmartHouse.prototype.removeDevice = function(elements) {
+    var lastElement = elements[elements.length-1];
+    if (elements.length > 0) {
+        lastElement.parentNode.removeChild(lastElement);
+    } else {
+        return;
+    }
+};
 
 SmartHouse.prototype.setDevice = function(device) {
     this._devices.push(device);
+    return this._devices;
 };
 
-SmartHouse.prototype.removeDevice = function() {
-    this._devices.pop();
-};
+/*SmartHouse.prototype.removeDevice = function(arr) {
+    delete arr[arr.length-1];
+};*/
 
 SmartHouse.prototype.renderDevice = function () {
     this._devices.forEach(function (device) {
