@@ -1,10 +1,9 @@
-var plazma = new TV("Plazma", "Samsung", "50d");
-
+//create penthouse
 var pentHouse = new SmartHouse("penthouse", "14 Manhattan, New York, USA");
-pentHouse.renderHouse = function (device) {
+
+pentHouse.renderHouse = function () {
     var house = document.createElement("div");
     house.className = this._name;
-    /*house.innerHTML = this._name;*/
     root.appendChild(house);
 
     var form = document.createElement("form");
@@ -79,7 +78,7 @@ pentHouse.renderHouse = function (device) {
             });
             return this.setAttribute("checked", "checked");
         };
-    };
+    }
 
     var addButton = document.createElement("button");
     addButton.className = "btn add";
@@ -98,9 +97,9 @@ pentHouse.renderHouse = function (device) {
             humidifier.renderConditioner();
         }else if (radio4.hasAttribute("checked")) {
             pentHouse.setDevice(plazma);
-            plazma.renderLight();
+            plazma.rendertv();
         }
-    });
+    })
 
     var removeButton = document.createElement("button");
     removeButton.className = "btn remove";
@@ -117,12 +116,12 @@ pentHouse.renderHouse = function (device) {
         } else if (radio3.hasAttribute("checked")) {
             var conditions = document.querySelectorAll(".Conditioner-Humidifier");
             pentHouse.removeDevice(conditions);
-        }/* else if (radio4.hasAttribute("checked")) {
-            pentHouse.setDevice(plazma);
-            plazma.renderLight();
-        }*/
-    });
-};
+        } else if (radio4.hasAttribute("checked")) {
+            var tvs = document.querySelectorAll(".Plazma");
+            pentHouse.removeDevice(tvs);
+        }
+    })
+}
 
 pentHouse.renderHouse();
 

@@ -15,11 +15,11 @@ Conditioner.prototype.constructor = Conditioner;
 
 Conditioner.prototype.addTemp = function() {
     var max = 30;
-    if (this._temperature > max) {
+    if (this._temperature >= max) {
         return;
     }
     return this._temperature++;
-};
+}
 
 Conditioner.prototype.removeTemp = function() {
     var min = 10;
@@ -27,7 +27,7 @@ Conditioner.prototype.removeTemp = function() {
         return;
     }
     return this._temperature--;
-};
+}
 
 
 //Create conditioner
@@ -46,18 +46,22 @@ humidifier.renderConditioner = function() {
     status.className = "status";
     status.innerText = "Conditioner is off";
 
+
     function  showStatus() {
         status.innerText = humidifier._state ? "Conditioner is on" : "Conditioner is off";
     }
+
+    var tempMenu = document.createElement("div");
 
     var onBtn = document.createElement("button");
     onBtn.type = "button";
     onBtn.className = "onBtn button";
     onBtn.innerHTML = "On";
     onBtn.addEventListener("click", function () {
-        humidifier.on()
+        humidifier.on();
+        condition.appendChild(tempMenu);
         showStatus();
-    });
+    })
 
     var offBtn = document.createElement("button");
     offBtn.type = "button";
@@ -65,8 +69,9 @@ humidifier.renderConditioner = function() {
     offBtn.innerHTML = "Off";
     offBtn.addEventListener("click", function () {
         humidifier.off();
+        condition.removeChild(tempMenu);
         showStatus();
-    });
+    })
 
     var currentTemp = document.createElement("div");
     currentTemp.className = "status";
@@ -94,14 +99,12 @@ humidifier.renderConditioner = function() {
         showTemp();
     }, false)
 
-
     root.children[0].children[0].appendChild(condition);
     condition.appendChild(brand);
     condition.appendChild(status);
     condition.appendChild(onBtn);
     condition.appendChild(offBtn);
-    condition.appendChild(currentTemp);
-    currentTemp.appendChild(decreaseTemp);
-    currentTemp.appendChild(increaseTemp);
-
+    tempMenu.appendChild(currentTemp);
+    tempMenu.appendChild(decreaseTemp);
+    tempMenu.appendChild(increaseTemp);
 }

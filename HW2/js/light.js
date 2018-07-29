@@ -18,15 +18,15 @@ Light.prototype.constructor = Light;
 
 Light.prototype.getName = function() {
     return this._name;
-};
+}
 
 Light.prototype.getBrand = function() {
     return this._brand;
-};
+}
 
 Light.prototype.getBright = function() {
     return this._bright;
-};
+}
 
 Light.prototype.addBright = function() {
      var max = 950;
@@ -34,7 +34,7 @@ Light.prototype.addBright = function() {
          return;
      }
     return this._bright += 50;
-};
+}
 
 Light.prototype.removeBright = function() {
     var min = 0;
@@ -42,10 +42,11 @@ Light.prototype.removeBright = function() {
         return;
     }
     return this._bright -= 50;
-};
+}
 
 //Create floorlamp
 var floorLamp = new Light("Floorlamp", "Panasonic", "floor lamp", "60W", "cold light");
+
 floorLamp.renderLight = function() {
     var lamp = document.createElement("div");
     lamp.className = this._name;
@@ -110,7 +111,7 @@ floorLamp.renderLight = function() {
             showBrightStatus();
             showStatus();
         }
-    });
+    })
 
     var offBtn = document.createElement("button");
     offBtn.type = "button";
@@ -121,7 +122,7 @@ floorLamp.renderLight = function() {
         floorLamp._bright = 0;
         showBrightStatus();
         showStatus();
-    });
+    })
 
     root.children[0].children[0].appendChild(lamp);
     bright.appendChild(increaseBright);
@@ -132,7 +133,7 @@ floorLamp.renderLight = function() {
     lamp.appendChild(offBtn);
     lamp.appendChild(brightStatus);
     lamp.appendChild(bright);
-};
+}
 
 //Create lusterlamp
 var lusterLamp = new Light("Luster", "Shine Like Sun", "luster", "100W", "warm light");
@@ -176,7 +177,7 @@ lusterLamp.renderLight = function() {
     increaseBright.addEventListener("click", function () {
         lusterLamp.addBright();
         showBrightStatus();
-    }, false);
+    }, false)
 
     var decreaseBright = document.createElement("button");
     decreaseBright.type = "button";
@@ -185,7 +186,7 @@ lusterLamp.renderLight = function() {
     decreaseBright.addEventListener("click", function () {
         lusterLamp.removeBright();
         showBrightStatus();
-    }, false);
+    }, false)
 
     var onBtn = document.createElement("button");
     onBtn.type = "button";
@@ -200,7 +201,7 @@ lusterLamp.renderLight = function() {
             showBrightStatus();
             showStatus();
         }
-    });
+    })
 
     var offBtn = document.createElement("button");
     offBtn.type = "button";
@@ -211,7 +212,7 @@ lusterLamp.renderLight = function() {
         lusterLamp._bright = 0;
         showBrightStatus();
         showStatus();
-    });
+    })
 
     root.children[0].children[0].appendChild(lamp);
     bright.appendChild(increaseBright);
@@ -222,4 +223,4 @@ lusterLamp.renderLight = function() {
     lamp.appendChild(offBtn);
     lamp.appendChild(brightStatus);
     lamp.appendChild(bright);
-};
+}

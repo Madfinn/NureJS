@@ -10,15 +10,15 @@ function DeviceControl() {
 
 DeviceControl.prototype.on = function () {
     this._state = true;
-};
+}
 
 DeviceControl.prototype.off = function () {
     this._state = false;
-};
+}
 
 DeviceControl.prototype.getState = function () {
     return this._state;
-};
+}
 
 DeviceControl.prototype.voltageProtection = function () {
     if (voltage >= 239) {
@@ -26,5 +26,5 @@ DeviceControl.prototype.voltageProtection = function () {
     } else {
         return this._state = true;
     }
-};
+}
 
