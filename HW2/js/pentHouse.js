@@ -1,6 +1,3 @@
-var floorLamp = new Light("Floorlamp", "Panasonic", "floor lamp", "60W", "cold light", 0);
-var lusterLamp = new Light("Luster", "Shine Like Sun", "luster", "100W", "warm light");
-var humidifier = new Conditioner("Conditioner-Humidifier", "Zelmer", "1500 Watt");
 var plazma = new TV("Plazma", "Samsung", "50d");
 
 var pentHouse = new SmartHouse("penthouse", "14 Manhattan, New York, USA");
@@ -98,7 +95,7 @@ pentHouse.renderHouse = function (device) {
             lusterLamp.renderLight();
         } else if (radio3.hasAttribute("checked")) {
             pentHouse.setDevice(humidifier);
-            humidifier.renderLight();
+            humidifier.renderConditioner();
         }else if (radio4.hasAttribute("checked")) {
             pentHouse.setDevice(plazma);
             plazma.renderLight();
@@ -117,10 +114,10 @@ pentHouse.renderHouse = function (device) {
         }else if (radio2.hasAttribute("checked")) {
             var lusters = document.querySelectorAll(".Luster");
             pentHouse.removeDevice(lusters);
-        }/*  else if (radio3.hasAttribute("checked")) {
-            pentHouse.setDevice(humidifier);
-            humidifier.renderLight();
-        }else if (radio4.hasAttribute("checked")) {
+        } else if (radio3.hasAttribute("checked")) {
+            var conditions = document.querySelectorAll(".Conditioner-Humidifier");
+            pentHouse.removeDevice(conditions);
+        }/* else if (radio4.hasAttribute("checked")) {
             pentHouse.setDevice(plazma);
             plazma.renderLight();
         }*/
