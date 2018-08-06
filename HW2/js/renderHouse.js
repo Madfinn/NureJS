@@ -1,3 +1,7 @@
+"use strict"
+
+var root = document.body.children[0];
+
 function RenderHouse(house, rootElement) {
     this._house = house;
     this._rootElement = rootElement;

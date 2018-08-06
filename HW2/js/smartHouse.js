@@ -1,6 +1,4 @@
 "use strict"
-var root = document.body.children[0];
-
 //constructor SmartHouse
 function SmartHouse(name, address) {
     this._name = name;

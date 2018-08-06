@@ -1,3 +1,5 @@
+"use strict"
+
 //Create floorlamp
 function renderFloorLamp() {
     var floorLamp = new Light("Floorlamp", "Panasonic", "floor lamp", "60W", "cold light");
