@@ -1,39 +1,67 @@
-function RenderDevice(device, rootElement) {
-    this._device = device;
-    this._rootElement = rootElement;
-   /* this._name = name;*/
-    this._state = document.createElement("div");
-}
+//Create floorlamp
+function renderFloorLamp() {
+    var floorLamp = new Light("Floorlamp", "Panasonic", "floor lamp", "60W", "cold light");
 
-RenderDevice.prototype.render = function () {
-    this._device = document.createElement("div");
-    this._device.className = "device";
-    this._device.innerHTML = this._name;
-
-    var device = this._device;
+    var lamp = document.createElement("div");
+    lamp.className = floorLamp._name;
+    lamp.innerHTML = floorLamp._name;
 
     var brand = document.createElement("div");
     brand.className = "prop";
-    brand.innerText = "Brand: " + device._brand;
+    brand.innerText = "Brand: " + floorLamp._brand;
+
+    var bright = document.createElement("div");
+    bright.className = "prop";
+
+    var brightStatus = document.createElement("div");
+    brightStatus.className = "status";
+    brightStatus.innerText = "Bright is " + floorLamp._bright;
 
     var status = document.createElement("div");
     status.className = "status";
-    status.innerText = device + " is off";
+    status.innerText = "Light is off";
 
     function  showStatus() {
-        status.innerText = this._state ? device + " is on" : device + " is off";
+        status.innerText = floorLamp._state ? "Light is on" : "Light is off";
     }
+
+    function  showBrightStatus() {
+        brightStatus.innerText = "Bright is " + floorLamp._bright;
+        if (floorLamp._bright > 0) {
+            status.innerText = "Light is on";
+        } else {
+            status.innerText = "Light is off";
+        }
+    }
+
+    var increaseBright = document.createElement("button");
+    increaseBright.type = "button";
+    increaseBright.className = "settingsBtn button";
+    increaseBright.innerHTML = "Bright Up";
+    increaseBright.addEventListener("click", function () {
+        floorLamp.addBright();
+        showBrightStatus();
+    }, false)
+
+    var decreaseBright = document.createElement("button");
+    decreaseBright.type = "button";
+    decreaseBright.className = "settingsBtn button";
+    decreaseBright.innerHTML = "Bright Down";
+    decreaseBright.addEventListener("click", function () {
+        floorLamp.removeBright();
+        showBrightStatus();
+    }, false)
 
     var onBtn = document.createElement("button");
     onBtn.type = "button";
     onBtn.className = "onBtn button";
     onBtn.innerHTML = "On";
     onBtn.addEventListener("click", function () {
-        device.on();
-        if (this._bright >= 50) {
+        floorLamp.on()
+        if (floorLamp._bright >= 50) {
             return;
         } else {
-            this._bright = 50;
+            floorLamp._bright = 50;
             showBrightStatus();
             showStatus();
         }
@@ -44,73 +72,30 @@ RenderDevice.prototype.render = function () {
     offBtn.className = "offBtn button";
     offBtn.innerHTML = "Off";
     offBtn.addEventListener("click", function () {
-        device.off();
-        this._bright = 0;
+        floorLamp.off();
+        floorLamp._bright = 0;
         showBrightStatus();
         showStatus();
     })
 
-    this._rootElement.innerHTML = "";
-    this._rootElement.appendChild(device);
-    device.appendChild(this._state);
-    device.appendChild(brand);
-    device.appendChild(status);
-    device.appendChild(onBtn);
-    device.appendChild(offBtn);
-
-//if Light
-    if (device instanceof Light) {
-        var bright = document.createElement("div");
-        bright.className = "prop";
-
-        var brightStatus = document.createElement("div");
-        brightStatus.className = "status";
-        brightStatus.innerText = "Bright is " + this._bright;
-
-        function  showBrightStatus() {
-            brightStatus.innerText = "Bright is " + this._bright;
-            if (this._bright > 0) {
-                status.innerText = "Light is on";
-            } else {
-                status.innerText = "Light is off";
-            }
-
-            var increaseBright = document.createElement("button");
-            increaseBright.type = "button";
-            increaseBright.className = "settingsBtn button";
-            increaseBright.innerHTML = "Bright Up";
-            increaseBright.addEventListener("click", function () {
-                device.addBright();
-                showBrightStatus();
-            }, false)
-
-            var decreaseBright = document.createElement("button");
-            decreaseBright.type = "button";
-            decreaseBright.className = "settingsBtn button";
-            decreaseBright.innerHTML = "Bright Down";
-            decreaseBright.addEventListener("click", function () {
-                device.removeBright();
-                showBrightStatus();
-            }, false)
-        }
-    }
-    device.appendChild(brightStatus);
-    device.appendChild(bright);
+    root.children[0].children[0].appendChild(lamp);
     bright.appendChild(increaseBright);
     bright.appendChild(decreaseBright);
+    lamp.appendChild(brand);
+    lamp.appendChild(status);
+    lamp.appendChild(onBtn);
+    lamp.appendChild(offBtn);
+    lamp.appendChild(brightStatus);
+    lamp.appendChild(bright);
 }
 
-var floorLamp = new Light("Floorlamp", "Panasonic", "floor lamp", "60W", "cold light");
-var viewFloorlamp = new RenderDevice(floorLamp, document.querySelectorAll(".house"));
-viewFloorlamp.render();
-
 //Create lusterlamp
-/*var lusterLamp = new Light("Luster", "Shine Like Sun", "luster", "100W", "warm light");
+function renderLusterLamp() {
+    var lusterLamp = new Light("Luster", "Shine Like Sun", "luster", "100W", "warm light");
 
-lusterLamp.renderLight = function() {
     var lamp = document.createElement("div");
-    lamp.className = this._name;
-    lamp.innerHTML = this._name;
+    lamp.className = lusterLamp._name;
+    lamp.innerHTML = lusterLamp._name;
 
     var brand = document.createElement("div");
     brand.className = "prop";
@@ -192,5 +177,195 @@ lusterLamp.renderLight = function() {
     lamp.appendChild(offBtn);
     lamp.appendChild(brightStatus);
     lamp.appendChild(bright);
-}*/
+}
 
+//Create conditioner
+function renderHumidifier() {
+    var humidifier = new Conditioner("Conditioner-Humidifier", "Zelmer", "1500 Watt");
+
+    var condition = document.createElement("div");
+    condition.className = humidifier._name;
+    condition.innerHTML = humidifier._name;
+
+    var brand = document.createElement("div");
+    brand.className = "prop";
+    brand.innerText = "Brand: " + humidifier._brand;
+
+    var status = document.createElement("div");
+    status.className = "status";
+    status.innerText = "Conditioner is off";
+
+
+    function  showStatus() {
+        status.innerText = humidifier._state ? "Conditioner is on" : "Conditioner is off";
+    }
+
+    var tempMenu = document.createElement("div");
+
+    var onBtn = document.createElement("button");
+    onBtn.type = "button";
+    onBtn.className = "onBtn button";
+    onBtn.innerHTML = "On";
+    onBtn.addEventListener("click", function () {
+        humidifier.on();
+        condition.appendChild(tempMenu);
+        showStatus();
+    })
+
+    var offBtn = document.createElement("button");
+    offBtn.type = "button";
+    offBtn.className = "offBtn button";
+    offBtn.innerHTML = "Off";
+    offBtn.addEventListener("click", function () {
+        humidifier.off();
+        condition.removeChild(tempMenu);
+        showStatus();
+    })
+
+    var currentTemp = document.createElement("div");
+    currentTemp.className = "status";
+    currentTemp.innerText = "Temperature is " + humidifier._temperature;
+
+    function  showTemp() {
+        currentTemp.innerText = "Temperature is " + humidifier._temperature;
+    }
+
+    var increaseTemp = document.createElement("button");
+    increaseTemp.type = "button";
+    increaseTemp.className = "settingsBtn button";
+    increaseTemp.innerHTML = "Temp Up";
+    increaseTemp.addEventListener("click", function () {
+        humidifier.addTemp();
+        showTemp();
+    }, false)
+
+    var decreaseTemp = document.createElement("button");
+    decreaseTemp.type = "button";
+    decreaseTemp.className = "settingsBtn button";
+    decreaseTemp.innerHTML = "Temp Down";
+    decreaseTemp.addEventListener("click", function () {
+        humidifier.removeTemp();
+        showTemp();
+    }, false)
+
+    root.children[0].children[0].appendChild(condition);
+    condition.appendChild(brand);
+    condition.appendChild(status);
+    condition.appendChild(onBtn);
+    condition.appendChild(offBtn);
+    tempMenu.appendChild(currentTemp);
+    tempMenu.appendChild(decreaseTemp);
+    tempMenu.appendChild(increaseTemp);
+}
+
+//create plazma
+function renderTV() {
+    var plazma = new TV("Plazma", "Samsung", "50d");
+
+    var tv = document.createElement("div");
+    tv.className = plazma._name;
+    tv.innerHTML = plazma._name;
+
+    var brand = document.createElement("div");
+    brand.className = "prop";
+    brand.innerText = "Brand: " + plazma._brand;
+
+    var diagonal = document.createElement("div");
+    diagonal.className = "prop";
+    diagonal.innerText = "Screen size: " + plazma._displaySize;
+
+    var status = document.createElement("div");
+    status.className = "status";
+    status.innerText = "Plazma is off";
+
+    var menu = document.createElement("div");
+
+    function showStatus() {
+        status.innerText = plazma._state ? "Plazma is on" : "Plazma is off";
+    }
+
+    var onBtn = document.createElement("button");
+    onBtn.type = "button";
+    onBtn.className = "onBtn button";
+    onBtn.innerHTML = "On";
+    onBtn.addEventListener("click", function () {
+        plazma.on();
+        tv.appendChild(menu);
+        showStatus();
+    })
+
+    var offBtn = document.createElement("button");
+    offBtn.type = "button";
+    offBtn.className = "offBtn button";
+    offBtn.innerHTML = "Off";
+    offBtn.addEventListener("click", function () {
+        plazma.off();
+        tv.removeChild(menu);
+        showStatus();
+    })
+
+    var currentChannel = document.createElement("div");
+    currentChannel.className = "status";
+    currentChannel.innerText = "Channel is " + plazma._currentChannel;
+
+    function  showChannel() {
+        currentChannel.innerText = "Channel is " + plazma._currentChannel;
+    }
+
+    var increaseChannel = document.createElement("button");
+    increaseChannel.type = "button";
+    increaseChannel.className = "settingsBtn button";
+    increaseChannel.innerHTML = "Next Channel";
+    increaseChannel.addEventListener("click", function () {
+        plazma.nextChannel();
+        showChannel();
+    }, false)
+
+    var decreaseChannel = document.createElement("button");
+    decreaseChannel.type = "button";
+    decreaseChannel.className = "settingsBtn button";
+    decreaseChannel.innerHTML = "Prev Channel";
+    decreaseChannel.addEventListener("click", function () {
+        plazma.prevChannel();
+        showChannel();
+    }, false)
+
+    var volume = document.createElement("div");
+    volume.className = "status";
+    volume.innerText = "Volume is " + plazma._currentVolume;
+
+    function  showVolume() {
+        volume.innerText = "Volume is " + plazma._currentVolume;
+    }
+
+    var increaseVolume = document.createElement("button");
+    increaseVolume.type = "button";
+    increaseVolume.className = "settingsBtn button";
+    increaseVolume.innerHTML = "Volume++";
+    increaseVolume.addEventListener("click", function () {
+        plazma.upVolume();
+        showVolume();
+    }, false)
+
+    var decreaseVolume = document.createElement("button");
+    decreaseVolume.type = "button";
+    decreaseVolume.className = "settingsBtn button";
+    decreaseVolume.innerHTML = "Volume--";
+    decreaseVolume.addEventListener("click", function () {
+        plazma.downVolume();
+        showVolume();
+    }, false)
+
+    root.children[0].children[0].appendChild(tv);
+    tv.appendChild(brand);
+    tv.appendChild(diagonal);
+    tv.appendChild(status);
+    tv.appendChild(onBtn);
+    tv.appendChild(offBtn);
+    menu.appendChild(currentChannel);
+    menu.appendChild(decreaseChannel);
+    menu.appendChild(increaseChannel);
+    menu.appendChild(volume);
+    menu.appendChild(decreaseVolume);
+    menu.appendChild(increaseVolume);
+}
