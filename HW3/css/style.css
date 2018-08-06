@@ -1,0 +1,51 @@
+.house {
+    width: 80%;
+    border: 1px solid black;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.2);
+    font: 16px 'Georgia', serif;
+    padding: 5px;
+    margin: 15px;
+}
+
+
+.Floorlamp, .Luster, .Conditioner-Humidifier, .Plazma {
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font: 16px 'Constantia', sans-serif;
+    padding: 5px;
+    margin: 15px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.prop, .status {
+    text-align: left;
+}
+
+.button {
+    border: 1px solid white;
+    color: white;
+    outline: none;
+    padding: 5px 10px;
+    margin: 5px;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.button.onBtn {
+    background-color: limegreen;
+}
+
+.button.offBtn {
+    background-color: darkred;
+}
+
+.settingsBtn{
+    background-color: darkorange;
+}
