@@ -87,6 +87,8 @@ function renderFloorLamp() {
     lamp.appendChild(offBtn);
     lamp.appendChild(brightStatus);
     lamp.appendChild(bright);
+
+    return floorLamp;
 }
 
 //Create lusterlamp
@@ -177,6 +179,8 @@ function renderLusterLamp() {
     lamp.appendChild(offBtn);
     lamp.appendChild(brightStatus);
     lamp.appendChild(bright);
+
+    return lusterLamp;
 }
 
 //Create conditioner
@@ -256,6 +260,8 @@ function renderHumidifier() {
     tempMenu.appendChild(currentTemp);
     tempMenu.appendChild(decreaseTemp);
     tempMenu.appendChild(increaseTemp);
+
+    return humidifier;
 }
 
 //create plazma
@@ -368,4 +374,6 @@ function renderTV() {
     menu.appendChild(volume);
     menu.appendChild(decreaseVolume);
     menu.appendChild(increaseVolume);
+
+    return plazma;
 }

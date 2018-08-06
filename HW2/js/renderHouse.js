@@ -75,17 +75,13 @@ RenderHouse.prototype.render = function(){
 
     addButton.addEventListener("click", function () {
         if (radio1.hasAttribute("checked")) {
-            pentHouse.setDevice(Light);
-            renderFloorLamp();
+            pentHouse.setDevice(renderFloorLamp());
         } else if (radio2.hasAttribute("checked")) {
-            pentHouse.setDevice(Light);
-            renderLusterLamp();
+            pentHouse.setDevice(renderLusterLamp());
         } else if (radio3.hasAttribute("checked")) {
-            pentHouse.setDevice(Conditioner);
-            renderHumidifier();
+            pentHouse.setDevice(renderHumidifier());
         }else if (radio4.hasAttribute("checked")) {
-            pentHouse.setDevice(TV);
-            renderTV();
+            pentHouse.setDevice(renderTV());
         }
     })
 
