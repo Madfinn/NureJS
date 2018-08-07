@@ -2,6 +2,7 @@
 
 //constructor Light
 function  Light(name, brand, type, power, lighting, bright) {
+    DeviceControl.apply(this, arguments);
     var self = this;
     this._name = name;
     this._brand = brand;
@@ -10,7 +11,6 @@ function  Light(name, brand, type, power, lighting, bright) {
     this._lighting = lighting;
     this._bright = 0;
     this._state = false;
-    DeviceControl.apply(this, arguments);
 }
 
 Light.prototype = Object.create(DeviceControl.prototype);

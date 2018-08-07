@@ -9,7 +9,6 @@ class TV extends DeviceControl {
         this._displaySize = displaySize;
         this._currentChannel = 1;
         this._currentVolume = 18;
-        DeviceControl.apply(this, arguments);
     }
 
     nextChannel() {

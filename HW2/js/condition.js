@@ -2,11 +2,11 @@
 
 //constructor Conditioner
 function Conditioner(name, brand, power) {
+    DeviceControl.apply(this, arguments)
     this._name = name;
     this._brand = brand;
     this._power = power;
     this._temperature = 20;
-    DeviceControl.apply(this, arguments)
 }
 
 Conditioner.prototype = Object.create(DeviceControl.prototype);

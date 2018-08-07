@@ -2,12 +2,12 @@
 
 //constructor TV
 function TV(name, brand, displaySize) {
+    DeviceControl.apply(this, arguments);
     this._name = name;
     this._brand = brand;
     this._displaySize = displaySize;
     this._currentChannel = 1;
     this._currentVolume = 18;
-    DeviceControl.apply(this, arguments);
 }
 
 TV.prototype = Object.create(DeviceControl.prototype);

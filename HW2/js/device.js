@@ -4,29 +4,29 @@
 var voltage = parseInt(Math.random() * (250 - 210) + 210);
 
 //abstract class
-class DeviceControl {
-    constructor() {
-        this._state = false;
-    }
+function DeviceControl() {
+    this._state = false;
+}
 
-    on() {
+
+ DeviceControl.prototype.on = function() {
         this._state = true;
     }
 
-    off() {
+DeviceControl.prototype.off = function() {
         this._state = false;
     }
 
-    get state() {
+DeviceControl.prototype.getState = function() {
         return this._state;
     }
 
-    voltageProtection() {
+DeviceControl.prototype.voltageProtection = function() {
         if (voltage >= 239) {
             return this._state = false;
         } else {
             return this._state = true;
         }
     }
-}
+
 
