@@ -1,20 +1,18 @@
-var arr = [2, 5, 3, 1, 4, 7, -3, -2, 8, 0, 9];
+var arr = [2, 5, 3, 1, 4, 7, -3, -2, 8, 0, 9, 6];
 
 function quickSort(arr) {
     var buffer;
     var N = arr.length;
 
-    for (var i = 0; i < arr.length; i++) {
+    /*for (var i = 0; i < arr.length; i++) {
         if ((typeof(arr[i]) === "number") && !(isNaN(arr[i]))) {
             continue;
         } else {
             alert('Array must contains only numbers');
             return;
         }
-    }
+    }*/
 
-    var valid = isNumber(arr);
-    if (valid) {
         var pivot = arr[parseInt(N / 2)];
         console.log('pivot' + pivot);
 
@@ -34,8 +32,8 @@ function quickSort(arr) {
         }
         /*тут должна быть рекурсия
         пока не получается. Работаю над этим*/
-
         console.log(arr);
-    }
     return arr;
 }
+
+quickSort(arr);
