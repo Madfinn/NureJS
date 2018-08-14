@@ -33,7 +33,7 @@ Light.prototype.addBright = function() {
      if (this._bright > max) {
          return;
      }
-    return this._bright += 50;
+     this._bright += 50;
 }
 
 Light.prototype.removeBright = function() {
@@ -41,6 +41,6 @@ Light.prototype.removeBright = function() {
     if (this._bright <= min) {
         return;
     }
-    return this._bright -= 50;
+    this._bright -= 50;
 }
 

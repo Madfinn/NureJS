@@ -110,6 +110,21 @@ RenderHouse.prototype.render = function(){
         }
     })
 
+    pentHouse.removeDevice = function(elements) {
+        var lastElement = elements[elements.length-1];
+        if (elements.length > 0) {
+            lastElement.parentNode.removeChild(lastElement);
+        } else {
+            return;
+        }
+    }
+
+    pentHouse.renderDevice = function () {
+        this._devices.forEach(function (device) {
+            device.renderDevice();
+        })
+    }
+
     this._rootElement.innerHTML = "";
     this._rootElement.appendChild(this._house);
     this._house.appendChild(this._state);

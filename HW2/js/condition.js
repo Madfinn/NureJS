@@ -12,13 +12,16 @@ function Conditioner(name, brand, power) {
 Conditioner.prototype = Object.create(DeviceControl.prototype);
 Conditioner.prototype.constructor = Conditioner;
 
+Conditioner.prototype.getTemperature = function() {
+    return this._temperature;
+}
 
 Conditioner.prototype.addTemp = function() {
     var max = 30;
     if (this._temperature >= max) {
         return;
     }
-    return this._temperature++;
+     this._temperature++;
 }
 
 Conditioner.prototype.removeTemp = function() {
@@ -26,7 +29,7 @@ Conditioner.prototype.removeTemp = function() {
     if (this._temperature <= min) {
         return;
     }
-    return this._temperature--;
+     this._temperature--;
 }
 
 

@@ -13,12 +13,21 @@ function TV(name, brand, displaySize) {
 TV.prototype = Object.create(DeviceControl.prototype);
 TV.prototype.constructor = TV;
 
+
+TV.prototype.getChannel = function() {
+    return this._currentChannel;
+}
+
+TV.prototype.getVolume = function() {
+    return this._currentVolume;
+}
+
 TV.prototype.nextChannel = function () {
     var lastChannel = 15;
     if(this._currentChannel >= lastChannel) {
         return;
     }
-    return this._currentChannel++;
+    this._currentChannel++;
 }
 
 TV.prototype.prevChannel = function () {
@@ -26,7 +35,7 @@ TV.prototype.prevChannel = function () {
     if(this._currentChannel <= firstChannel) {
         return;
     }
-    return this._currentChannel--;
+    this._currentChannel--;
 }
 
 TV.prototype.upVolume = function () {
@@ -34,7 +43,7 @@ TV.prototype.upVolume = function () {
     if(this._currentVolume >= maxVolume) {
         return;
     }
-    return this._currentVolume++;
+     this._currentVolume++;
 }
 
 TV.prototype.downVolume = function () {
@@ -42,5 +51,5 @@ TV.prototype.downVolume = function () {
     if(this._currentVolume <= minVolume) {
         return;
     }
-    return this._currentVolume--;
+    this._currentVolume--;
 }
