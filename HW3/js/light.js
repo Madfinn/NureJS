@@ -30,7 +30,7 @@ class Light extends DeviceControl{
         if (this._bright > max) {
             return;
         }
-        return this._bright += 50;
+         this._bright += 50;
     }
 
     removeBright() {
@@ -38,7 +38,7 @@ class Light extends DeviceControl{
         if (this._bright <= min) {
             return;
         }
-        return this._bright -= 50;
+         this._bright -= 50;
     }
 }
 

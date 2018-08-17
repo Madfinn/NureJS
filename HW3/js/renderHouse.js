@@ -98,18 +98,31 @@ class RenderHouse {
         removeButton.addEventListener("click", function () {
             if (radio1.hasAttribute("checked")) {
                 let floorLamps = document.querySelectorAll(".Floorlamp");
-                pentHouse.removeDevice(floorLamps);
+                removeDevice(floorLamps);
             } else if (radio2.hasAttribute("checked")) {
                 let lusters = document.querySelectorAll(".Luster");
-                pentHouse.removeDevice(lusters);
+                removeDevice(lusters);
             } else if (radio3.hasAttribute("checked")) {
                 let conditions = document.querySelectorAll(".Conditioner-Humidifier");
-                pentHouse.removeDevice(conditions);
+                removeDevice(conditions);
             } else if (radio4.hasAttribute("checked")) {
                 let tvs = document.querySelectorAll(".Plazma");
-                pentHouse.removeDevice(tvs);
+                removeDevice(tvs);
             }
         })
+
+        let removeDevice = (elements) => {
+            let lastElement = elements[elements.length-1];
+            if (elements.length > 0) {
+                lastElement.parentNode.removeChild(lastElement);
+            }
+        }
+
+       let renderDevice = () => {
+            this._devices.forEach(function (device) {
+                device.renderDevice();
+            })
+        }
 
         this._rootElement.innerHTML = "";
         this._rootElement.appendChild(this._house);

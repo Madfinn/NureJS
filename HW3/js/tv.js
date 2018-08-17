@@ -11,6 +11,14 @@ class TV extends DeviceControl {
         this._currentVolume = 18;
     }
 
+    get volume() {
+        return this._currentVolume;
+    }
+
+    get channel() {
+        return this._currentChannel;
+    }
+
     nextChannel() {
         let lastChannel = 15;
         if (this._currentChannel >= lastChannel) {

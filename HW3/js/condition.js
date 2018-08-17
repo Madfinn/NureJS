@@ -15,7 +15,7 @@ class Conditioner extends DeviceControl {
         if (this._temperature >= max) {
             return;
         }
-        return this._temperature++;
+         this._temperature++;
     }
 
     removeTemp() {
@@ -23,7 +23,7 @@ class Conditioner extends DeviceControl {
         if (this._temperature <= min) {
             return;
         }
-        return this._temperature--;
+         this._temperature--;
     }
 }
 
